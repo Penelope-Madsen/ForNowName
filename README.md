@@ -1,2 +1,3 @@
 # ForNowName
-## Individual Programming Project
+## Project Description
+## UI and Logic Planning
