@@ -25,9 +25,18 @@ subRect.center = (width/2, height/2)
 card = pygame.Rect(width/2, height/2+100, 320, 320)
 card.center = (width/2, height/2+40)
 
-welcome = font2.render('Congratulations, Captain! Youve been in the ship trade business for years, and at last youve been promoted high enough to have your own ship.', True, white)
+welcomeMessage = [
+    "Congratulations, Captain!",
+    "",
+    "You’ve been in the ship trade",
+    "business for years",
+    "and at last you’ve been",
+    "promoted high enough to",
+    "have your own ship."]
+
+welcome = font2.render("Congratulations, Captain!", True, white)
 welcomeRect = welcome.get_rect()
-welcomeRect.center = card.center
+welcomeRect.center = (width/2, height/2-40)
 
 for x in range(40):
         screen.blit(star, (random.randint(0, 380),random.randint(0, 410)))
@@ -46,6 +55,13 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             screen.fill(background)
             pygame.draw.rect(screen, blue, card, 0, 30)
-            screen.blit(welcome, welcomeRect)
+            #screen.blit(welcome, welcomeRect)
+            for i, msg in enumerate(welcomeMessage):
+                welcome = font2.render(msg,True,white)
+                welcomeRect = welcome.get_rect()
+                welcomeRect.center = (width/2,height/2-40 +30*i)
+                screen.blit(welcome,welcomeRect)
+
+
 
     pygame.display.flip()
