@@ -17,8 +17,6 @@ DEFAULT_IMAGE_SIZE = (40, 30)
 crew = pygame.transform.scale(crew, DEFAULT_IMAGE_SIZE)
 fuelsym = pygame.image.load("fuel.png")
 carsym = pygame.image.load("cargo.png")
-DEFAULT_IMAGE_SIZE = (41, 41)
-carsym = pygame.transform.scale(carsym, DEFAULT_IMAGE_SIZE)
 screen = pygame.display.set_mode(size)
 screen.fill(blue)
 
@@ -31,6 +29,7 @@ font3 = pygame.font.Font('freesansbold.ttf', 20)
 moral = 20
 fuel = 20
 cargo = 20
+lawful = 20
 
 title = font1.render('Welcome to Star Gazers!', True, white)
 titleRect = title.get_rect()
@@ -38,7 +37,7 @@ titleRect.center = (width/2, height/2-100)
 sub = font3.render('Click to begin', True, white)
 subRect = sub.get_rect()
 subRect.center = (width/2, height/2)
-ships = ["the Andromeda", "the Argo", "Starbuster"]
+ships = ["Andromeda", "Argo", "Starbuster 5000", "Galaxy Devourer 4000"]
 welcomeMessage = [
     "Congratulations, Captain!",
     "After working in space shipping for years,",
@@ -46,7 +45,19 @@ welcomeMessage = [
     "enough to have your own ship.",
     "",
     "",
-    "Welcome to " + ships[random.randint(0, len(ships)-1)]]
+    "Welcome to ..",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "the "+ships[random.randint(0, len(ships)-1)]]
 
 
 welc = Card(white, welcomeMessage, font2, blue)
@@ -68,18 +79,22 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN:
             screen.fill(background)
             pygame.draw.rect(screen, green, pygame.Rect(0, 0, width, 65))
-            screen.blit(crew, (70, 14))
-            pygame.draw.rect(screen, blue, pygame.Rect(125, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(125, 8, 18, moral))
-            pygame.draw.rect(screen, blue, pygame.Rect(125, 8, 18, 45), 1)
-            screen.blit(carsym, (190, 14))
-            pygame.draw.rect(screen, blue, pygame.Rect(245, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(245, 8, 18, fuel))
-            pygame.draw.rect(screen, blue, pygame.Rect(245, 8, 18, 45), 1)
-            screen.blit(fuelsym, (310, 14))
-            pygame.draw.rect(screen, blue, pygame.Rect(365, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(365, 8, 18, cargo))
-            pygame.draw.rect(screen, blue, pygame.Rect(365, 8, 18, 45), 1)
+            screen.blit(crew, (40, 14))
+            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
+            pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, moral))
+            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
+            screen.blit(carsym, (150, 14))
+            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
+            pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, fuel))
+            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
+            screen.blit(fuelsym, (250, 14))
+            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
+            pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, cargo))
+            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
+
+            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
+            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, cargo))
+            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
 
     pygame.display.flip()
