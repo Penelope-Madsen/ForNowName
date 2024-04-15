@@ -17,6 +17,7 @@ DEFAULT_IMAGE_SIZE = (40, 30)
 crew = pygame.transform.scale(crew, DEFAULT_IMAGE_SIZE)
 fuelsym = pygame.image.load("fuel.png")
 carsym = pygame.image.load("cargo.png")
+badge = pygame.image.load("badge.png")
 screen = pygame.display.set_mode(size)
 screen.fill(blue)
 
@@ -91,7 +92,7 @@ while True:
             pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
             pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, cargo))
             pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
-
+            screen.blit(badge, (350, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
             pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, cargo))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
