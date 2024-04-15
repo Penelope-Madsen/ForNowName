@@ -3,18 +3,19 @@ import pygame
 size = width, height = 470, 530
 screen = pygame.display.set_mode(size)
 pygame.init()
+white = (255, 255, 255)
+vis = False
 
 class Card:
-    def __init__(self, tcolor, text, font, bcolor):
-        # crewe, cargoe, fuele, lawe
+    def __init__(self, tcolor, text, font, bcolor, crewe, cargoe, fuele, lawe):
         self.tcolor = tcolor
         self.text = text
         self.font = font
         self.bcolor = bcolor
-        # self.crewe = crewe
-        # self.cargoe = cargoe
-        # self.fuele = fuele
-        # self.lawe = lawe
+        self.crewe = crewe
+        self.cargoe = cargoe
+        self.fuele = fuele
+        self.lawe = lawe
 
     # card = pygame.Rect(0, height / 2 - 200, 320, 320)
     # card.center = (width / 2, height / 2)
@@ -29,8 +30,12 @@ class Card:
             stateRect.center = (width / 2, height / 2 - 175 + 20 * i)
             screen.blit(state, stateRect)
 
-    # def hover(self):
-    #     if
+    def hover(self, xpos, ypos):
+        result = self.font.render(str(self.crewe), True, white)
+        resultRect = result.get_rect()
+        resultRect.center = (60, 200)
+        while 20 < xpos < 100 and 165 < ypos < 490:
+            screen.blit(result, resultRect)
 
     # def left(self):
     #     mouse.get_position()

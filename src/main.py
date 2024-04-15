@@ -10,6 +10,7 @@ blue = 12, 11, 43
 white = (255, 255, 255)
 green = 74, 112, 100
 background = 69, 73, 87
+position = (0,0)
 star = pygame.image.load("Star.png")
 sparkle = pygame.image.load("Sparkle.png")
 crew = pygame.image.load("crew.drawio.png")
@@ -61,21 +62,24 @@ welcomeMessage = [
     "the "+ships[random.randint(0, len(ships)-1)]]
 
 
-welc = Card(white, welcomeMessage, font2, blue)
+welc = Card(white, welcomeMessage, font2, blue, 0, 0, 0, 0)
 
 for x in range(40):
-    screen.blit(star, (random.randint(0, width),random.randint(0, height)))
-    x+=1
+    screen.blit(star, (random.randint(0, width), random.randint(0, height)))
+    x += 1
 for x in range(15):
-    screen.blit(sparkle, (random.randint(0, width),random.randint(0, height)))
-    x+=1
+    screen.blit(sparkle, (random.randint(0, width), random.randint(0, height)))
+    x += 1
 screen.blit(title, titleRect)
 screen.blit(sub, subRect)
 
 while True:
-    
+    position = pygame.mouse.get_pos()
+    xpos = position[0]
+    ypos = position[1]
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: sys.exit()
+        if event.type == pygame.QUIT:
+            sys.exit()
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             screen.fill(background)
@@ -97,5 +101,7 @@ while True:
             pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, cargo))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
+            print(position)
+            welc.hover(xpos, ypos)
 
     pygame.display.flip()
