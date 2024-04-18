@@ -5,6 +5,7 @@ from Card import Card
 
 pygame.init()
 
+start = False
 size = width, height = 470, 530
 blue = 12, 11, 43
 white = (255, 255, 255)
@@ -62,7 +63,7 @@ welcomeMessage = [
     "the "+ships[random.randint(0, len(ships)-1)]]
 
 
-welc = Card(white, welcomeMessage, font2, blue, 0, 0, 0, 0)
+welc = Card(white, welcomeMessage, font2, blue, 0, 0, 0, 0, "What am I doing here???", "I'm so ready")
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
@@ -81,7 +82,7 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN and start == False:
             screen.fill(background)
             pygame.draw.rect(screen, green, pygame.Rect(0, 0, width, 65))
             screen.blit(crew, (40, 14))
@@ -102,6 +103,7 @@ while True:
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
             print(position)
+            start = True
+        if start:
             welc.hover(xpos, ypos)
-
     pygame.display.flip()
