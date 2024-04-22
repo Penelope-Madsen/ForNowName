@@ -34,12 +34,12 @@ class Card:
             choice = self.font.render(self.left, True, white)
             # choiceRect = choice.get_rect()
             # choiceRect.center = (width/2, height/2 + 70)
-            screen.blit(choice, (width/2-len(self.left)*4, height/2))
+            screen.blit(choice, (width/2-len(self.left)*7, height/2))
         elif 370 < xpos < 450 and 165 < ypos < 490:
             choice = self.font.render(self.right, True, white)
             # choiceRect = choice.get_rect()
             # choiceRect.center = (width/2, height/2 + 70)
-            screen.blit(choice, (width / 2 - len(self.right) * 4, height / 2))
+            screen.blit(choice, (width / 2 + len(self.right)*2, height / 2))
 
     # def left(self):
     #     mouse.get_position()

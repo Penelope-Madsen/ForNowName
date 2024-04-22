@@ -104,6 +104,8 @@ while True:
             welc.create()
             print(position)
             start = True
+            pygame.display.flip()
         if start:
             welc.hover(xpos, ypos)
+            pygame.display.flip()
     pygame.display.flip()
