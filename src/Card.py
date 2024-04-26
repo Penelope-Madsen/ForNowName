@@ -35,14 +35,17 @@ class Card:
             # choiceRect = choice.get_rect()
             # choiceRect.center = (width/2, height/2 + 70)
             screen.blit(choice, (width/2-len(self.left)*7, height/2))
+            pygame.display.flip()
         elif 370 < xpos < 450 and 165 < ypos < 490:
             choice = self.font.render(self.right, True, white)
             # choiceRect = choice.get_rect()
             # choiceRect.center = (width/2, height/2 + 70)
             screen.blit(choice, (width / 2 + len(self.right)*2, height / 2))
+            pygame.display.flip()
 
-    # def left(self):
-    #     mouse.get_position()
-    #     position = mouse.position()
-    #     if mouse.click and position < 100:
+    # def choose(self, xpos, ypos):
+    #     if 20 < xpos < 100 and 165 < ypos < 490 and pygame.MOUSEBUTTONDOWN:
+    #         # effects: update levels, others
+    #         # new card
+    #         cargo += self.cargoe
 

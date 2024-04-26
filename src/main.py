@@ -99,7 +99,7 @@ while True:
             pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
             screen.blit(badge, (350, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, cargo))
+            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, lawful))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
             print(position)
@@ -107,5 +107,5 @@ while True:
             pygame.display.flip()
         if start:
             welc.hover(xpos, ypos)
-            pygame.display.flip()
+
     pygame.display.flip()
