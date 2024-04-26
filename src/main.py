@@ -11,7 +11,7 @@ blue = 12, 11, 43
 white = (255, 255, 255)
 green = 74, 112, 100
 background = 69, 73, 87
-position = (0,0)
+position = (0, 0)
 star = pygame.image.load("Star.png")
 sparkle = pygame.image.load("Sparkle.png")
 crew = pygame.image.load("crew.drawio.png")
@@ -82,7 +82,7 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN and start == False:
+        if event.type == pygame.MOUSEBUTTONDOWN and start is False:
             screen.fill(background)
             pygame.draw.rect(screen, green, pygame.Rect(0, 0, width, 65))
             screen.blit(crew, (40, 14))

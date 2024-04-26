@@ -6,6 +6,7 @@ pygame.init()
 white = (255, 255, 255)
 vis = False
 
+
 class Card:
     def __init__(self, tcolor, text, font, bcolor, crewe, cargoe, fuele, lawe, left, right):
         self.tcolor = tcolor
@@ -25,9 +26,9 @@ class Card:
         pygame.draw.rect(screen, self.bcolor, card, 0, 30)
         for i, msg in enumerate(self.text):
             state = self.font.render(msg, True, self.tcolor)
-            stateRect = state.get_rect()
-            stateRect.center = (width / 2, height / 2 - 175 + 20 * i)
-            screen.blit(state, stateRect)
+            staterect = state.get_rect()
+            staterect.center = (width / 2, height / 2 - 175 + 20 * i)
+            screen.blit(state, staterect)
 
     def hover(self, xpos, ypos):
         if 20 < xpos < 100 and 165 < ypos < 490:
@@ -48,4 +49,3 @@ class Card:
     #         # effects: update levels, others
     #         # new card
     #         cargo += self.cargoe
-
