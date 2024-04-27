@@ -2,6 +2,7 @@ import sys
 import pygame
 import random
 from Card import Card
+from Player import p1
 
 pygame.init()
 
@@ -28,29 +29,21 @@ font1 = pygame.font.Font('freesansbold.ttf', 30)
 font2 = pygame.font.Font('freesansbold.ttf', 18)
 font3 = pygame.font.Font('freesansbold.ttf', 20)
 
-# controls neg space of stats - inverse
-moral = 20
-fuel = 20
-cargo = 20
-lawful = 20
-
 title = font1.render('Welcome to Star Gazers!', True, white)
 titleRect = title.get_rect()
 titleRect.center = (width/2, height/2-100)
 sub = font3.render('Click to begin', True, white)
 subRect = sub.get_rect()
 subRect.center = (width/2, height/2)
-ships = ["Andromeda", "Argo", "Starbuster 5000", "Galaxy Devourer 4000"]
+
 welcomeMessage = [
     "Congratulations, Captain!",
     "After working in space shipping for years,",
     "at long last you’ve been promoted high",
     "enough to have your own ship.",
     "",
-    "",
-    "Welcome to ..",
-    "",
-    "",
+    "",]
+welcomeMessage2 = ["Welcome to ..",
     "",
     "",
     "",
@@ -60,10 +53,18 @@ welcomeMessage = [
     "",
     "",
     "",
-    "the "+ships[random.randint(0, len(ships)-1)]]
+    "",
+    "",
+    "the "+p1.name]
 
+# controls neg space of stats - inverse
+moral = 20
+fuel = 20
+cargo = 20
+lawful = 20
 
-welc = Card(white, welcomeMessage, font2, blue, 0, 0, 0, 0, "What am I doing here???", "I'm so ready")
+welc = Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 5,
+            0, 0, 20,"What am I doing here???", "I'm so ready")
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
@@ -87,25 +88,26 @@ while True:
             pygame.draw.rect(screen, green, pygame.Rect(0, 0, width, 65))
             screen.blit(crew, (40, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, moral))
+            pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, p1.crew))
             pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
             screen.blit(carsym, (150, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, fuel))
+            pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, p1.fuel))
             pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
             screen.blit(fuelsym, (250, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, cargo))
+            pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, p1.cargo))
             pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
             screen.blit(badge, (350, 14))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, lawful))
+            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
             print(position)
             start = True
-            pygame.display.flip()
         if start:
             welc.hover(xpos, ypos)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                welc.choose(xpos, ypos)
 
     pygame.display.flip()
