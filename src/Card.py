@@ -13,7 +13,7 @@ green = 74, 112, 100
 
 class Card:
     def __init__(self, tcolor, toptext, ctext, font, bcolor, lcrew, lcargo, lfuel, llaw, rcrew, rcargo, rfuel, rlaw,
-                 left, right):
+                 left, right, on):
         self.tcolor = tcolor
         self.toptext = toptext
         self.ctext = ctext
@@ -30,6 +30,7 @@ class Card:
         self.rlaw = rlaw
         self.left = left
         self.right = right
+        self.on = on
         self.rect = pygame.Rect(width/2, height/2, 320, 320)
         self.rect.center = (width / 2, height / 2 + 70)
 
@@ -49,6 +50,7 @@ class Card:
             screen.blit(state, staterect)
 
     def hover(self, xpos, ypos):
+        print("I am hovering")
         if 20 < xpos < 100 and 165 < ypos < 490:
             choice = self.font.render(self.left, True, yellow)
             # choiceRect = choice.get_rect()
@@ -73,41 +75,50 @@ class Card:
 
     def choose(self, xpos, ypos):
         pygame.event.get()
+        # effects: update levels, others
         if 20 < xpos < 100 and 165 < ypos < 490 and pygame.mouse.get_pressed():
-            # effects: update levels, others
-            # new card
             print("left choose")
             p1.cargo += self.lcargo
             p1.crew += self.lcrew
             p1.fuel += self.lfuel
             p1.law += self.llaw
-            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, p1.crew))
-            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, p1.fuel))
-            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, p1.cargo))
-            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
-            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
+            if p1.crew < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, p1.crew))
+                pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
+            if p1.fuel < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, p1.fuel))
+                pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
+            if p1.cargo < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, p1.cargo))
+                pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
+            if p1.law < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
+                pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
         elif 370 < xpos < 450 and 165 < ypos < 490 and pygame.mouse.get_pressed():
             print("right choose")
             p1.cargo += self.rcargo
             p1.crew += self.rcrew
             p1.fuel += self.rfuel
             p1.law += self.rlaw
-            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, p1.crew))
-            pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, p1.fuel))
-            pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, p1.cargo))
-            pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
-            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
-            pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
-            pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
+            if p1.crew < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(100, 8, 18, p1.crew))
+                pygame.draw.rect(screen, blue, pygame.Rect(100, 8, 18, 45), 1)
+            if p1.fuel < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(210, 8, 18, p1.fuel))
+                pygame.draw.rect(screen, blue, pygame.Rect(210, 8, 18, 45), 1)
+            if p1.cargo < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(310, 8, 18, p1.cargo))
+                pygame.draw.rect(screen, blue, pygame.Rect(310, 8, 18, 45), 1)
+            if p1.law < 45:
+                pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
+                pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
+                pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
+        # new card
+        self.on = False

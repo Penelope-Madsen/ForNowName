@@ -1,5 +1,6 @@
 import random
 
+
 class Player:
     def __init__(self, crew, fuel, cargo, law, name):
         self.crew = crew
