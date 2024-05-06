@@ -65,8 +65,8 @@ lawful = 20
 
 welc = Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 5,
             0, 0, 20, "What am I doing here???", "I'm so ready")
-nextc = Card(white, "What's going on here?", "", font2, blue, 5, 10, 0,
-             0, 5, 0, 0, 20, "LEFT", "RIGHT")
+nextcard = Card(white, ["What's going on here?"], "", font2, blue, 5, 10, 0, 0,
+                5, 0, 0, 20, "LEFT", "RIGHT")
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
@@ -114,12 +114,16 @@ while True:
             start = False
         if not start:
             action(welc, xpos, ypos)
+            print(xpos, ypos)
+        if p1.progress:
+            nextcard.create()
+            action(nextcard, xpos, ypos)
         # welc.create()
         # print(position)
         # welc.hover(xpos, ypos)
         # if pygame.MOUSEBUTTONDOWN:
         #     welc.choose(xpos, ypos)
         #     print("next created")
-        #     nextc.create()
+        #     nextcard.create()
 
     pygame.display.flip()

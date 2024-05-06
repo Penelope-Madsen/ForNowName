@@ -36,6 +36,10 @@ class Card:
     def create(self):
         # card = pygame.Rect(width/2, height/2, 320, 320)
         # card.center = (width/2, height/2 + 70)
+        # 65 is the height of the top bar, 265 is height/2, 175 top of the card
+        back = pygame.Rect(width/2, 120, width, 110)
+        back.center = (width/2, 120)
+        pygame.draw.rect(screen, background, back, 0, 0)
         pygame.draw.rect(screen, self.bcolor, self.rect, 0, 30)
         for i, msg in enumerate(self.toptext):
             state = self.font.render(msg, True, self.tcolor)
@@ -97,6 +101,7 @@ class Card:
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
+            p1.progress = True
         elif 370 < xpos < 450 and 165 < ypos < 490 and pygame.mouse.get_pressed():
             print("right choose")
             p1.cargo += self.rcargo
@@ -120,3 +125,4 @@ class Card:
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
         # new card
+            p1.progress = True
