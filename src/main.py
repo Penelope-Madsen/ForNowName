@@ -67,6 +67,9 @@ welc = Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 5,
             0, 0, 20, "What am I doing here???", "I'm so ready")
 nextcard = Card(white, ["What's going on here?"], "", font2, blue, 5, 10, 0, 0,
                 5, 0, 0, 20, "LEFT", "RIGHT")
+asteroid = Card(white, ["5 asteroids are on collision path"], "", font2, blue, 0, 10, 0,
+                20, 0, 0, 20, 0, "5 asteroids eh? That doesn't sound so bad",
+                "Veer off course")
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
