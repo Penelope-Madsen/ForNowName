@@ -6,7 +6,7 @@ from Player import p1
 
 pygame.init()
 
-game = False
+start = True
 size = width, height = 470, 530
 blue = 12, 11, 43
 white = (255, 255, 255)
@@ -64,9 +64,9 @@ cargo = 20
 lawful = 20
 
 welc = Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 5,
-            0, 0, 20, "What am I doing here???", "I'm so ready", False)
+            0, 0, 20, "What am I doing here???", "I'm so ready")
 nextc = Card(white, "What's going on here?", "", font2, blue, 5, 10, 0,
-             0, 5, 0, 0, 20, "LEFT", "RIGHT", False)
+             0, 5, 0, 0, 20, "LEFT", "RIGHT")
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
@@ -79,10 +79,9 @@ screen.blit(sub, subRect)
 
 
 def action(which, xp, yp):
-    while which.on:
-        which.hover(xp, yp)
-        if pygame.MOUSEBUTTONDOWN:
-            which.choose(xp, yp)
+    which.hover(xp, yp)
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        which.choose(xp, yp)
 
 
 while True:
@@ -92,7 +91,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and game is False:
+        if event.type == pygame.MOUSEBUTTONDOWN and start:
             screen.fill(background)
             pygame.draw.rect(screen, green, pygame.Rect(0, 0, width, 65))
             screen.blit(crew, (40, 14))
@@ -112,10 +111,9 @@ while True:
             pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             welc.create()
-            game = True
-            welc.on = True
-        action(welc, xpos, ypos)
-        print(welc.on)
+            start = False
+        if not start:
+            action(welc, xpos, ypos)
         # welc.create()
         # print(position)
         # welc.hover(xpos, ypos)
