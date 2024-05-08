@@ -82,9 +82,17 @@ screen.blit(sub, subRect)
 
 
 def action(which, xp, yp):
+    # print(p1.prog, p1.goal)
+    which.create()
     which.hover(xp, yp)
+    print(p1.clicked)
     if event.type == pygame.MOUSEBUTTONDOWN:
-        which.choose(xp, yp)
+        p1.clicked += 1
+        print("mouse down")
+
+    # if event.type == pygame.MOUSEBUTTONDOWN and p1.prog == p1.goal:
+    #     print('action choose is happening')
+    #     which.choose(xp, yp)
 
 
 while True:
@@ -113,20 +121,15 @@ while True:
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
             pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
             pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
-            welc.create()
+            # welc.create()
             start = False
-        if not start:
-            action(welc, xpos, ypos)
-            print(xpos, ypos)
-        if p1.progress:
-            nextcard.create()
-            action(nextcard, xpos, ypos)
-        # welc.create()
-        # print(position)
-        # welc.hover(xpos, ypos)
-        # if pygame.MOUSEBUTTONDOWN:
-        #     welc.choose(xpos, ypos)
-        #     print("next created")
-        #     nextcard.create()
+    if not start and p1.prog == 0:
+        action(welc, xpos, ypos)
+    if p1.prog == 1:
+        nextcard.create()
+        action(nextcard, xpos, ypos)
+        # if p1.progress == 3:
+        #     asteroid.create()
+        #     action(asteroid, xpos, ypos)
 
     pygame.display.flip()

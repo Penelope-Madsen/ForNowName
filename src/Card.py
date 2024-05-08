@@ -53,7 +53,7 @@ class Card:
             screen.blit(state, staterect)
 
     def hover(self, xpos, ypos):
-        print("I am hovering")
+        # print("I am hovering")
         if 20 < xpos < 100 and 165 < ypos < 490:
             choice = self.font.render(self.left, True, yellow)
             # choiceRect = choice.get_rect()
@@ -79,7 +79,8 @@ class Card:
     def choose(self, xpos, ypos):
         pygame.event.get()
         # effects: update levels, others
-        if 20 < xpos < 100 and 165 < ypos < 490 and pygame.mouse.get_pressed():
+        # if 20 < xpos < 100 and 165 < ypos < 490 and pygame.mouse.get_pressed():
+        if 20 < xpos < 100 and 165 < ypos < 490:
             print("left choose")
             p1.cargo += self.lcargo
             p1.crew += self.lcrew
@@ -101,8 +102,8 @@ class Card:
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
-            p1.progress = True
-        elif 370 < xpos < 450 and 165 < ypos < 490 and pygame.mouse.get_pressed():
+            p1.prog += 1
+        elif 370 < xpos < 450 and 165 < ypos < 490:
             print("right choose")
             p1.cargo += self.rcargo
             p1.crew += self.rcrew
@@ -125,4 +126,4 @@ class Card:
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
         # new card
-            p1.progress = True
+            p1.prog += 1
