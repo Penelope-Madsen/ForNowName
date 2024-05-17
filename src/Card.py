@@ -13,7 +13,7 @@ green = 74, 112, 100
 
 class Card:
     def __init__(self, tcolor, toptext, ctext, font, bcolor, lcrew, lcargo, lfuel, llaw, rcrew, rcargo, rfuel, rlaw,
-                 left, right):
+                 left, right, lnext, rnext):
         self.tcolor = tcolor
         self.toptext = toptext
         self.ctext = ctext
@@ -32,6 +32,8 @@ class Card:
         self.right = right
         self.rect = pygame.Rect(width/2, height/2, 320, 320)
         self.rect.center = (width / 2, height / 2 + 70)
+        self.lnext = lnext
+        self.rnext = rnext
 
     def create(self):
         # card = pygame.Rect(width/2, height/2, 320, 320)
@@ -103,6 +105,8 @@ class Card:
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
             p1.prog += 1
+            p1.nextCard = self.lnext
+
         elif 370 < xpos < 450 and 165 < ypos < 490:
             print("right choose")
             p1.cargo += self.rcargo
@@ -127,3 +131,4 @@ class Card:
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
         # new card
             p1.prog += 1
+            p1.nextCard = self.rnext
