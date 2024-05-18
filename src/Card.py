@@ -9,6 +9,30 @@ blue = 12, 11, 43
 background = 69, 73, 87
 yellow = 247, 246, 200
 green = 74, 112, 100
+font2 = pygame.font.Font('freesansbold.ttf', 18)
+
+
+def printtext(sample):
+    text = sample.split()
+    i = 0
+    x = 1
+    sentence = ''
+    for word in text:
+        if i < 5:
+            sentence += word + " "
+            i += 1
+        else:
+            choice = font2.render(sentence, True, yellow)
+            choicerect = choice.get_rect()
+            choicerect.center = (width / 2, height / 2 + 20 * x)
+            screen.blit(choice, choicerect)
+            sentence = word + " "
+            i = 0
+            x += 1
+    choice = font2.render(sentence, True, yellow)
+    choicerect = choice.get_rect()
+    choicerect.center = (width / 2, height / 2 + 20 * x)
+    screen.blit(choice, choicerect)
 
 
 class Card:
@@ -43,11 +67,31 @@ class Card:
         back.center = (width/2, 120)
         pygame.draw.rect(screen, background, back, 0, 0)
         pygame.draw.rect(screen, self.bcolor, self.rect, 0, 30)
-        for i, msg in enumerate(self.toptext):
-            state = self.font.render(msg, True, self.tcolor)
-            staterect = state.get_rect()
-            staterect.center = (width / 2, height / 2 - 175 + 20 * i)
-            screen.blit(state, staterect)
+        # for i, msg in enumerate(self.toptext):
+        #     state = self.font.render(msg, True, self.tcolor)
+        #     staterect = state.get_rect()
+        #     staterect.center = (width / 2, height / 2 - 175 + 20 * i)
+        #     screen.blit(state, staterect)
+        text = self.toptext.split()
+        i = 0
+        x = 1
+        sentence = ''
+        for word in text:
+            if i < 5:
+                sentence += word + " "
+                i += 1
+            else:
+                choice = font2.render(sentence, True, self.tcolor)
+                choicerect = choice.get_rect()
+                choicerect.center = (width / 2, height / 2 - 190 + 20 * x)
+                screen.blit(choice, choicerect)
+                sentence = word + " "
+                i = 0
+                x += 1
+        choice = font2.render(sentence, True, self.tcolor)
+        choicerect = choice.get_rect()
+        choicerect.center = (width / 2, height / 2 - 190 + 20 * x)
+        screen.blit(choice, choicerect)
         for i, msg in enumerate(self.ctext):
             state = self.font.render(msg, True, self.tcolor)
             staterect = state.get_rect()
@@ -55,18 +99,11 @@ class Card:
             screen.blit(state, staterect)
 
     def hover(self, xpos, ypos):
-        # print("I am hovering")
         if 20 < xpos < 100 and 165 < ypos < 490:
-            choice = self.font.render(self.left, True, yellow)
-            # choiceRect = choice.get_rect()
-            # choiceRect.center = (width/2, height/2 + 70)
-            screen.blit(choice, (width/2-len(self.left)*6, height/2+50))
+            printtext(self.left)
             pygame.draw.lines(screen, black, False, [(40, 310), (30, 320), (40, 330)], 2)
         elif 370 < xpos < 450 and 165 < ypos < 490:
-            choice = self.font.render(self.right, True, yellow)
-            # choiceRect = choice.get_rect()
-            # choiceRect.center = (width/2, height/2 + 70)
-            screen.blit(choice, (width / 2 + len(self.right)*2, height / 2+50))
+            printtext(self.right)
             pygame.draw.lines(screen, black, False, [(430, 310), (440, 320), (430, 330)], 2)
         else:
             pygame.draw.rect(screen, self.bcolor, self.rect, 0, 30)
@@ -83,7 +120,6 @@ class Card:
         # effects: update levels, others
         # if 20 < xpos < 100 and 165 < ypos < 490 and pygame.mouse.get_pressed():
         if 20 < xpos < 100 and 165 < ypos < 490:
-            print("left choose")
             p1.cargo += self.lcargo
             p1.crew += self.lcrew
             p1.fuel += self.lfuel
@@ -104,11 +140,9 @@ class Card:
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45))
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
-            p1.prog += 1
             p1.nextCard = self.lnext
 
         elif 370 < xpos < 450 and 165 < ypos < 490:
-            print("right choose")
             p1.cargo += self.rcargo
             p1.crew += self.rcrew
             p1.fuel += self.rfuel
@@ -130,5 +164,4 @@ class Card:
                 pygame.draw.rect(screen, green, pygame.Rect(410, 8, 18, p1.law))
                 pygame.draw.rect(screen, blue, pygame.Rect(410, 8, 18, 45), 1)
         # new card
-            p1.prog += 1
             p1.nextCard = self.rnext

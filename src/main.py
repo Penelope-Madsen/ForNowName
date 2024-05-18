@@ -36,13 +36,8 @@ sub = font3.render('Click to begin', True, white)
 subRect = sub.get_rect()
 subRect.center = (width / 2, height / 2)
 
-welcomeMessage = [
-    "Congratulations, Captain!",
-    "After working in space shipping for years,",
-    "at long last you’ve been promoted high",
-    "enough to have your own ship.",
-    "",
-    "", ]
+welcomeMessage = ("Congratulations, Captain! After working in space shipping for years at long last you’ve been promoted "
+                  "high enough to have your own ship.")
 welcomeMessage2 = ["Welcome to ..",
                    "",
                    "",
@@ -63,24 +58,40 @@ fuel = 20
 cargo = 20
 lawful = 20
 
-asteroid = Card(white, ["5 asteroids are on collision path"], "", font2, blue, 0, 10, 0,
-                20, 0, 0, 20, 0, "5 asteroids eh? That doesn't sound so bad",
-                "Veer off course", 'card1', 'card2')
 
-cards = {'card1': Card(white, ["What's going on here?"], "", font2,
-                       blue, 5, 10, 0, 0, 5, 0, 0, 20, "LEFT",
-                       "RIGHT", 'card1', 'card2'),
-         'card2': Card(white, ["What's going on here?"], "", font2, blue, 5, 10, 0,
-                       0, 5, 0, 0, 20, "LEFT", "RIGHT", 'card1',
-                       'asteroid'),
-         'welc': Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 5,
-             0, 0, 20, "What am I doing here???", "I'm so ready", 'card1', 'card2'),
-         'asteroid': Card(white, ["5 asteroids are on collision path"], "", font2, blue, 0, 10, 0,
-                20, 0, 0, 20, 0, "5 asteroids eh? That doesn't sound so bad",
+cards = {'card1': Card(white, "Will you take 50 crates from Livestock & Co for 20 star?", "", font2,
+                       blue, 2, -5, -5, 0, -2, 5, 5, 0, "Fine",
+                       "Sounds stinky", 'L&Co', 'stranger'),
+         'stranger': Card(white, "Hey kid. Heard you're a captain now. Need someone to show you the ropes?", "", font2, blue, -10, 0, 0,
+                       0, 2, 0, 0, 0, "My hero! I'd be honored", "Scram. I can run my own ship", 'card4',
+                       'smuggle'),
+         'welc': Card(white, welcomeMessage, welcomeMessage2, font2, blue, 0, 0, 0, 0, 0,
+             0, 0, 0, "What am I doing here???", "I'm so ready", 'instru', 'card1'),
+         'asteroid': Card(white, "5 asteroids are hurtling towards you", "", font2, blue, 0, 0, 0,
+                0, 0, 0, 0, 0, "5 asteroids eh? That doesn't sound so bad",
                 "Veer off course", 'card1', 'card4'),
-         'card4': Card(white, ["Meep beep! Meet your robotic friend"], "", font2, blue, 0, 10,
-                       0, 20, 0, 0, 20, 0, "Useless trash",
-                       "Excellent service", 'welc', 'card2')}
+         'card4': Card(white, "I brought along this giant clunky robot. Hope you don't mind", "", font2, blue, -5, 0,
+                       -2, 0, 5, 0, 2, 0, "I do actually",
+                       "Uhhhh", 'asteroid', 'asteroid'),
+         'instru': Card(white, "Make important leadership decisions and don't let your controls get too high or too low", "", font2, blue, 0, 10,
+                       0, 0, 0, 0, 0, 0, "What controls?",
+                       "Let me at it!", 'instru2', 'card1'),
+         'instru2': Card(white, "Far left is your crew moral, then there's trade, fuel, and your law abidingness", "", font2, blue, 0, 0,
+                       0, 0, 0, 0, 0, 0, "I'm ready",
+                       "I'll never understand", 'card1', 'card1'),
+         'L&Co': Card(white, "Uh oh. You spent too long at a port and now won't deliver on time. "
+                             "How fast are you wlling to go?", "", font2, blue, 0, 0, 5, 10, 0, 5, 0, -10, "As fast as I need to",
+                       "The extremely lawful galactic speed limit", 'asteroid', 'asteroid'),
+         'smuggle': Card(white, "Pssst .. hey. Will you smuggle these lizards to Neptune for me?", "", font2,
+                       blue, 0, 2, 0, -10, 2, 0, 0, 10, "Hell no",
+                       "How much?", 'L&Co', 'haggle'),
+         'haggle': Card(white, "30 grand + 30 barrels of star?", "", font2,
+                       blue, 0, -10, 0, 15, 0, 0, 0, 0, "Sure thing!",
+                       "Try again", 'asteroid', 'haggle2'),
+         'haggle2' : Card(white, "50 grand + 40 barrels of star?", "", font2,
+                       blue, 0, 5, 2, -5, 0, -10, -7, 10, "Forget it",
+                       "Shake on it", 'card1', 'asteroid'),
+         }
 
 for x in range(40):
     screen.blit(star, (random.randint(0, width), random.randint(0, height)))
@@ -93,11 +104,9 @@ screen.blit(sub, subRect)
 
 
 def action(which, xp, yp):
-    # print(p1.prog, p1.goal)
     which.create()
     which.hover(xp, yp)
     if event.type == pygame.MOUSEBUTTONDOWN and p1.up:
-        print("mouse down")
         p1.up = False
         which.choose(xp, yp)
     if event.type == pygame.MOUSEBUTTONUP:
